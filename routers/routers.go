@@ -537,7 +537,7 @@ func Init(shell *ishell.Shell) error {
 		Name: "bypass-url-parser",
 		Help: "通过攻击URL解析器来绕过403",
 		Func: func(c *ishell.Context) {
-			params := append([]string{"run", "--rm", "-it", "rickshang/bypass-url-parser"}, c.Args...)
+			params := append([]string{"run", "--rm", "-i", "rickshang/bypass-url-parser"}, c.Args...)
 			exec.CmdExec("docker", params...)
 		},
 	})
