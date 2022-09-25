@@ -249,6 +249,33 @@ func Init(shell *ishell.Shell) error {
 		},
 	})
 	shell.AddCmd(&ishell.Cmd{
+		Name: "rip-svn.pl",
+		Help: ".svn 文件泄漏利用脚本(可以下载.svn文件夹，方便检查历史版本)",
+		Func: func(c *ishell.Context) {
+			currentDir, err := os.Getwd()
+			if err != nil {
+				log.Println("os.Getwd failed,err:", err)
+				return
+			}
+			params := append([]string{"run", "--rm", "-it", "--network", "host", "-v", currentDir + ":/work", "-w", "/work", "k0st/alpine-dvcs-ripper", "rip-svn.pl"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
+
+	shell.AddCmd(&ishell.Cmd{
+		Name: "rip-hg.pl",
+		Help: ".hg 文件泄漏利用脚本(可以下载.gh文件夹，方便检查历史版本)",
+		Func: func(c *ishell.Context) {
+			currentDir, err := os.Getwd()
+			if err != nil {
+				log.Println("os.Getwd failed,err:", err)
+				return
+			}
+			params := append([]string{"run", "--rm", "-it", "--network", "host", "-v", currentDir + ":/work", "-w", "/work", "k0st/alpine-dvcs-ripper", "rip-hg.pl"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
+	shell.AddCmd(&ishell.Cmd{
 		Name: "gobuster",
 		Help: "目录扫描工具（dirsearch拉跨时备用）",
 		Func: func(c *ishell.Context) {
@@ -461,6 +488,48 @@ func Init(shell *ishell.Shell) error {
 			//获取家目录
 			user, _ := user.Current()
 			params := append([]string{"run", "--rm", "-it", "-v", user.HomeDir + "/.config/subfinder/:/root/.config/subfinder/", "--network", "host", "rickshang/subfinder"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
+	shell.AddCmd(&ishell.Cmd{
+		Name: "githack:lijiejie",
+		Help: "git 泄漏利用工具(只会下载当前版本)",
+		Func: func(c *ishell.Context) {
+			currentDir, err := os.Getwd()
+			if err != nil {
+				log.Println("os.Getwd failed,err:", err)
+				return
+			}
+			params := append([]string{"run", "--rm", "-it", "-v", currentDir + ":/test", "-w", "/test", "--network", "host", "rickshang/githack"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
+	shell.AddCmd(&ishell.Cmd{
+		Name: "githack:bugscanteam",
+		Help: "git 泄漏利用工具(会下载.git文件夹，方便检索历史版本)",
+		Func: func(c *ishell.Context) {
+			params := []string{"run", "--rm", "-it", "rickshang/githack:bugscanteam", "/bin/sh"}
+			exec.CmdExec("docker", params...)
+		},
+	})
+	shell.AddCmd(&ishell.Cmd{
+		Name: "paramspider",
+		Help: "参数挖掘工具",
+		Func: func(c *ishell.Context) {
+			params := append([]string{"run", "--rm", "-it", "--network", "host", "rickshang/paramspider"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
+	shell.AddCmd(&ishell.Cmd{
+		Name: "input-scanner",
+		Help: "用于提取js文件中的URL",
+		Func: func(c *ishell.Context) {
+			currentDir, err := os.Getwd()
+			if err != nil {
+				log.Println("os.Getwd failed,err:", err)
+				return
+			}
+			params := append([]string{"run", "--rm", "-it", "-v", currentDir + "/inputs:/var/www/html/input-scanner/inputs", "-v", currentDir + "/outputs:/var/www/html/input-scanner/outputs", "-p", "8887:8887", "rickshang/input-scanner"}, c.Args...)
 			exec.CmdExec("docker", params...)
 		},
 	})

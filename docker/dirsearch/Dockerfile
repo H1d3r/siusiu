@@ -3,4 +3,4 @@ FROM kalilinux/kali-rolling:latest
 RUN apt-get update \
 && apt-get install -y dirsearch 
 COPY ./dir.txt  /dir.txt 
-ENTRYPOINT [ "dirsearch","--full-url","--random-agent","-f","-e","php,aspx,jsp,html,js,txt,zip","-w","/dir.txt"]
+ENTRYPOINT [ "dirsearch","--full-url","--random-agent","-w","/dir.txt"]
