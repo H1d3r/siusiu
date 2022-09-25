@@ -464,6 +464,14 @@ func Init(shell *ishell.Shell) error {
 			exec.CmdExec("docker", params...)
 		},
 	})
+	shell.AddCmd(&ishell.Cmd{
+		Name: "bypass-url-parser",
+		Help: "通过攻击URL解析器来绕过403",
+		Func: func(c *ishell.Context) {
+			params := append([]string{"run", "--rm", "-it", "rickshang/bypass-url-parser"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
 	//未找到命令时
 	shell.NotFound(controllers.NotFoundHandler)
 	return nil
