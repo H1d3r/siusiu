@@ -534,6 +534,14 @@ func Init(shell *ishell.Shell) error {
 		},
 	})
 	shell.AddCmd(&ishell.Cmd{
+		Name: "bypass-url-parser",
+		Help: "通过攻击URL解析器来绕过403",
+		Func: func(c *ishell.Context) {
+			params := append([]string{"run", "--rm", "-i", "rickshang/bypass-url-parser"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
+	shell.AddCmd(&ishell.Cmd{
 		Name: "php_mt_seed",
 		Help: "PHP伪随机数种子破解器",
 		Func: func(c *ishell.Context) {
