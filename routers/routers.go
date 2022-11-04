@@ -533,6 +533,15 @@ func Init(shell *ishell.Shell) error {
 			exec.CmdExec("docker", params...)
 		},
 	})
+	shell.AddCmd(&ishell.Cmd{
+		Name: "php_mt_seed",
+		Help: "PHP伪随机数种子破解器",
+		Func: func(c *ishell.Context) {
+			params := append([]string{"run", "--rm", "-it", "rickshang/php_mt_seed"}, c.Args...)
+			exec.CmdExec("docker", params...)
+		},
+	})
+
 	//未找到命令时
 	shell.NotFound(controllers.NotFoundHandler)
 	return nil

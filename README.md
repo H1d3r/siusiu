@@ -1,12 +1,12 @@
 # siusiu （suitesuite）
-一款基于docker的渗透测试工具箱，致力于做到渗透工具随身携带、开箱即用。减少渗透测试工程师花在安装工具、记忆工具使用方法上的时间和精力。
+一款基于docker的渗透测试工具箱，致力于做到渗透工具随身携带、开箱即用、按需下载。
 
 ## Features
 
 siusiu 将常用的渗透测试工具都封装为了docker镜像，并推送到了dockerhub中。并且为用户提供了一个shell控制台，通过该控制台，可以：
 
 - 查看第三方安全工具列表
-- 自动安装第三方安全工具
+- 按需下载第三方安全工具
 - 运行第三方安全工具
 - 查看第三方安全工具的说明文档与使用样例（通过demos命令）
 
@@ -33,23 +33,33 @@ Commands:
   ffuf                         模糊测试工具
   firefox-decrypt              firefox浏览器密码提取工具
   gau                          根据域名进行被动url收集(open threat+wayback machine+common crawl)
+  githack:bugscanteam          git 泄漏利用工具(会下载.git文件夹，方便检索历史版本)
+  githack:lijiejie             git 泄漏利用工具(只会下载当前版本)
   gobuster                     目录扫描工具（dirsearch拉跨时备用）
   gopherus                     ssrf漏洞gopher协议payload生成工具
   help                         display help
   http3-client                 支持http3的客户端
   hydra                        弱口令爆破工具
+  input-scanner                用于提取js文件中的URL
   jsfinder                     从js源码提取URL，子域名的工具。
   ksubdomain                   子域名爆破工具
   linkfinder                   用于发现 JavaScript 文件中的端点及其参数
   nmap                         主机发现、端口扫描、服务扫描、版本识别
+  pacu                         aws 利用框架
+  paramspider                  参数挖掘工具
   payloads-all-the-things      payloads大全
+  php_mt_seed                  PHP伪随机数种子破解器
   pocsuite3                    poc测试框架
+  rip-hg.pl                    .hg 文件泄漏利用脚本(可以下载.gh文件夹，方便检查历史版本)
+  rip-svn.pl                   .svn 文件泄漏利用脚本(可以下载.svn文件夹，方便检查历史版本)
   searchsploit                 exp/poc搜索工具
   smbmap                       smb服务利用工具
   smtp-user-enum               SMTP用户名枚举工具
   sqlmap                       SQL注入攻击工具
+  sqlmapapi                    sqlmap api
   steghide                     隐写术工具
   stegseek                     爆破隐写术密码
+  subfinder                    子域名查询工具
   svn-exp                      svn-exp 文件泄漏利用脚本
   tool-helper                  获取工具的帮助文档
   waybackurls                  查询指定域名的历史页面
@@ -101,8 +111,10 @@ go install github.com/ShangRui-hash/siusiu@latest
 
 ## 使用技巧
 
-### tab 
-tab 键可以自动补全命令
+### 使用方式
+siusiu 有两种使用方式，一种是交互式控制台，直接输入siusiu即可启动控制台， tab 键可以自动补全命令，help 可以查看所有命令。另一种是非交互方式，通过`siusiu exec <tool-name>` 来运行指定工具
+
+
 ### 搜索指定工具
 例如：搜索和web相关的工具
 ```
