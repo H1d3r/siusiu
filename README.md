@@ -86,6 +86,7 @@ Commands:
 ```shell
 git clone --depth 1 https://github.com/ShangRui-hash/siusiu.git
 cd siusiu
+go env -w  GOPROXY=https://goproxy.cn,https://goproxy.io,direct
 go build -o siusiu  
 ```
 
