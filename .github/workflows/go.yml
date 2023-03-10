@@ -24,6 +24,9 @@ jobs:
     - name: Build
       run: make build_linux && make build_win && make build_mac
     
+    - name: List files
+      run: ls -R
+      
     # 发布release, 添加上一步编译好的可执行文件: siusiu_linux_amd64, siusiu.exe, siusiu_darwin_amd64
     - name: Create Release
       id: create_release
@@ -44,9 +47,9 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: |
-          ./siusiu_linux_amd64
-          ./siusiu.exe
-          ./siusiu_darwin_amd64
+        - asset_name: |
+          siusiu_linux_amd64
+          siusiu.exe
+          siusiu_darwin_amd64
         asset_name: "siusiu_linux_amd64, siusiu.exe, siusiu_darwin_amd64"
         asset_content_type: application/octet-stream
