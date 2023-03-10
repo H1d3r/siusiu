@@ -79,7 +79,9 @@ Commands:
 
 ### 下载二进制文件
 
-点击docker发行版，下载对应的版本并赋予可执行权限即可。
+step1. 点击 Releases ，下载对应的版本
+step2. 修改可执行文件名为 siusiu
+step3. 赋予该文件可执行权限
 
 ### git 安装
 
