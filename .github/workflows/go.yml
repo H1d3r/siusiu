@@ -25,7 +25,7 @@ jobs:
       run: make build_linux && make build_win && make build_mac
     
     - name: List files
-      run: ls -R
+      run: ls -l
       
     # 发布release, 添加上一步编译好的可执行文件: siusiu_linux_amd64, siusiu.exe, siusiu_darwin_amd64
     - name: Create Release
@@ -39,8 +39,8 @@ jobs:
         draft: false
         prerelease: false
 
-   - name: Upload Release Asset
-      id: upload-release-asset
+    # 添加Build中编译好的可执行文件: siusiu_linux_amd64
+    - name: Upload Linux Asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -49,9 +49,9 @@ jobs:
         asset_path: ./siusiu_linux_amd64
         asset_name: siusiu_linux_amd64
         asset_content_type: application/octet-stream
-
-    - name: Upload Release Asset
-      id: upload-release-asset-2
+    
+    # 添加Build中编译好的可执行文件: siusiu.exe
+    - name: Upload Windows Asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,9 +60,9 @@ jobs:
         asset_path: ./siusiu.exe
         asset_name: siusiu.exe
         asset_content_type: application/octet-stream
-
-    - name: Upload Release Asset
-      id: upload-release-asset-3
+    
+    # 添加Build中编译好的可执行文件: siusiu_darwin_amd64
+    - name: Upload MacOS Asset
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
