@@ -77,22 +77,29 @@ Commands:
 
 ## Installation
 
-### 下载二进制文件
+### 方式一: 下载二进制文件
 
 - step1. 点击 Releases ，下载对应的版本
 - step2. 修改可执行文件名为 siusiu
 - step3. 赋予该文件可执行权限
 
-### git 安装
+### 方式二: git 安装
 
 ```shell
 git clone --depth 1 https://github.com/ShangRui-hash/siusiu.git
 cd siusiu
 go env -w  GOPROXY=https://goproxy.cn,https://goproxy.io,direct
+```
+linux / macOS 
+```
 go build -o siusiu  
 ```
+windows
+```
+go build -o siusiu.exe
+```
 
-### go安装
+### 方式三: go安装
 
 ```shell
 go get github.com/ShangRui-hash/siusiu@latest
