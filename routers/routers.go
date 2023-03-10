@@ -249,7 +249,7 @@ func Init(shell *ishell.Shell) error {
 		},
 	})
 	shell.AddCmd(&ishell.Cmd{
-		Name: "rip-svn.pl",
+		Name: "rip-svn",
 		Help: ".svn 文件泄漏利用脚本(可以下载.svn文件夹，方便检查历史版本)",
 		Func: func(c *ishell.Context) {
 			currentDir, err := os.Getwd()
@@ -263,7 +263,7 @@ func Init(shell *ishell.Shell) error {
 	})
 
 	shell.AddCmd(&ishell.Cmd{
-		Name: "rip-hg.pl",
+		Name: "rip-hg",
 		Help: ".hg 文件泄漏利用脚本(可以下载.gh文件夹，方便检查历史版本)",
 		Func: func(c *ishell.Context) {
 			currentDir, err := os.Getwd()
