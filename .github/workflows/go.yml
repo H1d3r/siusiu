@@ -43,11 +43,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.build.outputs.upload_url }}
-        asset_path: ./siusiu_linux_amd64
-        asset_name: 
-          - siusiu_linux_amd64 
-          - siusiu.exe
-          - siusiu_darwin_amd64
+        asset_path: ./
+        asset_name: siusiu_linux_amd64, siusiu.exe, siusiu_darwin_amd64
         asset_content_type: application/octet-stream
   
 
